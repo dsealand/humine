@@ -6,6 +6,7 @@ import { Provider } from "@shopify/app-bridge-react";
 import Cookies from "js-cookie";
 import "@shopify/polaris/styles.css";
 import translations from "@shopify/polaris/locales/en.json";
+import Head from "next/head";
 
 const client = new ApolloClient({
   fetchOptions: {
