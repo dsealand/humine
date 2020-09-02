@@ -33,6 +33,15 @@ class MyApp extends App {
           </Provider>
         </AppProvider>
       </Container>
+      // <React.Fragment>
+      //   <Head>
+      //     <title>Sample App</title>
+      //     <meta charSet="utf-8" />
+      //   </Head>
+      //   <AppProvider i18n={translations}>
+      //     <Component {...pageProps} />
+      //   </AppProvider>
+      // </React.Fragment>
     );
   }
 }
