@@ -10,7 +10,8 @@ import session from "koa-session";
 import * as handlers from "./handlers/index";
 
 dotenv.config();
-const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
+// const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
+// const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
 const port = parseInt(process.env.PORT, 10) || 8081;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({
@@ -35,7 +36,7 @@ app.prepare().then(() => {
     createShopifyAuth({
       apiKey: SHOPIFY_API_KEY,
       secret: SHOPIFY_API_SECRET,
-      scopes: [SCOPES],
+      scopes: ['read_products', 'write_products'],
 
       async afterAuth(ctx) {
         //Auth token and shop available in session
