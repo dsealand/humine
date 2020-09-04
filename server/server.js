@@ -8,7 +8,9 @@ import next from "next";
 import Router from "koa-router";
 import session from "koa-session";
 import * as handlers from "./handlers/index";
+
 dotenv.config();
+const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
 const port = parseInt(process.env.PORT, 10) || 8081;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({
