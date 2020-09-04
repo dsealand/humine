@@ -8,13 +8,13 @@ class Index extends React.Component {
   render() {
     return (
       <Page>
-        <TitleBar
+        {/* <TitleBar
           title="Sample App"
           primaryAction={{
             content: "Select products",
             onAction: () => this.setState({ open: true }),
           }}
-        />
+        /> */}
         <ResourcePicker
           resourceType="Product"
           showVariants={false}
