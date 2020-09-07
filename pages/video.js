@@ -1,18 +1,44 @@
-import { Button, Page } from "@shopify/polaris";
+import { Button, Page, ResourceList } from "@shopify/polaris";
+import { Provider, ResourcePicker } from "@shopify/app-bridge-react";
+import store from 'store-js';
+import ResourceListWithProducts from '../components/ResourceList';
 
-const Video = () => (
-  <Page
-    breadcrumbs={[{content: 'Home', url: '/'}]}
-    title="Sync Videos"
-    primaryAction={
-      <Button
-        primary
+class Video extends React.Component{
+  state = { open: false };
+
+  render() {
+    return(
+      <Page
+        // breadcrumbs={[{content: 'Home', url: '/'}]}
+        title="Sync Videos"
+        primaryAction={{
+          content: "Select products",
+          onAction: () => this.setState({ open: true }),
+        }}
       >
-        Sync
-      </Button>
-    }
-  >
-    <p>Products with associated videos will be synced from S3 bucket.</p>
-  </Page>
-)
+
+        <p>Videos will be synced for selected products.</p>
+        <br>
+        </br>
+
+        <ResourcePicker
+          resourceType="Product"
+          showVariants={false}
+          open={this.state.open}
+          onSelection={(resources) => this.handleSelection(resources)}
+          onCancel={() => this.setState({ open: false })}
+        />
+
+        <ResourceListWithProducts />
+      </Page>
+    )
+  }
+
+  handleSelection = (resources) => {
+    const idsFromResources = resources.selection.map((product) => product.id);
+    this.setState({ open: false });
+    store.set('ids', idsFromResources);
+  };
+}
+
 export default Video;

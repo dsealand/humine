@@ -1,9 +1,7 @@
-import { Layout, Page, EmptyState } from "@shopify/polaris";
+import { Layout, Page, MediaCard } from "@shopify/polaris";
 import { ResourcePicker, TitleBar } from "@shopify/app-bridge-react";
 import store from 'store-js';
 import ResourceListWithProducts from '../components/ResourceList';
-
-const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 
 class Index extends React.Component {
   state = { open: false };
@@ -11,13 +9,6 @@ class Index extends React.Component {
     const emptyState = !store.get('ids');
     return (
       <Page>
-        {/* <TitleBar
-          title="Sample App"
-          primaryAction={{
-            content: "Select products",
-            onAction: () => this.setState({ open: true }),
-          }}
-        /> */}
         <ResourcePicker
           resourceType="Product"
           showVariants={false}
@@ -25,22 +16,24 @@ class Index extends React.Component {
           onSelection={(resources) => this.handleSelection(resources)}
           onCancel={() => this.setState({ open: false })}
         />
-        {emptyState ? (
-          <Layout>
-            <EmptyState
-              heading="Select products to sync"
-              action={{
-                content: "Select products",
-                onAction: () => this.setState({ open: true }),
-              }}
-              image={img}
-            >
-              <p>Selected products will be synced to an S3 bucket.</p>
-            </EmptyState>
-          </Layout>
-        ) : (
-          <ResourceListWithProducts />
-        )}
+        <MediaCard
+          title="Getting Started"
+          primaryAction={{
+            content: 'Learn about getting started',
+            onAction: () => {},
+          }}
+          description="Discover how Shopify can power up your entrepreneurial journey."
+          popoverActions={[{content: 'Dismiss', onAction: () => {}}]}
+        >
+          <img alt="Logo"
+            width="100%"
+            height="100%"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+            src="https://i.imgur.com/6f3J705.png"></img>
+        </MediaCard>
       </Page>
     );
   }

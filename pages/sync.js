@@ -1,5 +1,6 @@
 import { Button, Page } from "@shopify/polaris";
 import { Provider, ResourcePicker } from "@shopify/app-bridge-react";
+import store from 'store-js';
 
 class Sync extends React.Component{
   state = { open: false };
@@ -7,7 +8,7 @@ class Sync extends React.Component{
   render() {
     return(
       <Page
-        breadcrumbs={[{content: 'Home', url: '/'}]}
+        // breadcrumbs={[{content: 'Home', url: '/'}]}
         title="Sync Products"
         primaryAction={{
           content: "Select products",
@@ -16,6 +17,8 @@ class Sync extends React.Component{
       >
 
         <p>Selected products in the store will be synced to an S3 bucket.</p>
+        <br>
+        </br>
 
         <ResourcePicker
           resourceType="Product"
@@ -31,7 +34,7 @@ class Sync extends React.Component{
   handleSelection = (resources) => {
     const idsFromResources = resources.selection.map((product) => product.id);
     this.setState({ open: false });
-    console.log(idsFromResources);
+    store.set('ids', idsFromResources);
   };
 }
 
