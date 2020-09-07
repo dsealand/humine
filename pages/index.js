@@ -17,13 +17,12 @@ class Index extends React.Component {
           onCancel={() => this.setState({ open: false })}
         />
         <MediaCard
-          title="Getting Started"
+          title="Humine Video Shopify Connector"
           primaryAction={{
-            content: 'Learn about getting started',
-            onAction: () => {},
+            content: 'Sync videos to your products',
+            url: '/video',
           }}
-          description="Discover how Shopify can power up your entrepreneurial journey."
-          popoverActions={[{content: 'Dismiss', onAction: () => {}}]}
+          description="Discover how Humine can power up your entrepreneurial journey."
         >
           <img alt="Logo"
             width="100%"
